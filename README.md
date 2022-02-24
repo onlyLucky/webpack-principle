@@ -15,6 +15,7 @@ webpack的产生是由前端模块化演化进程相关的，下面会介绍前�
 > 早期的前端技术标准根本没有预料到前端行业会有今天这个规模，所以在设计上存在很多缺陷
 
 1. 文件划分方式
+
 [![bPU6PO.png](https://s4.ax1x.com/2022/02/23/bPU6PO.png)](https://imgtu.com/i/bPU6PO)
 
 这种相对简单粗暴的文件划分，只是简单的解决了模块划分，但是同时还是带来了很多问题
@@ -29,10 +30,60 @@ webpack的产生是由前端模块化演化进程相关的，下面会介绍前�
 下面代码是引入上面的文件划分后的模块
 [![bPNICF.png](https://s4.ax1x.com/2022/02/23/bPNICF.png)](https://imgtu.com/i/bPNICF)
 
+2. 命名空间方式
+
+可见的下面使用全局变量对象添加键值
+
+```js
+// module-a.js
+window.moduleA = {
+  method1: function(){
+    console.log('moduleA#method1')
+  }
+}
+
+// module-b.js
+window.moduleB = {
+  data: 'one',
+  method1: fucntion(){
+    console.log('moduleB#method1')
+  }
+}
+```
+显而易见当前方式，只是解决命名冲突的问题，但其他问题依旧存在
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="module-a.js"></script>
+  <script src="module-b.js"></script>
+  <script>
+    moduleA.method1()
+    moduleB.method1()
+    // 模块成员依旧可以修改
+    moduleB.data = 'foo'
+  </script>
+</body>
+</html>
+```
+
+3. IIFE 立即调用函数
+
+[立即调用函数表达式](https://developer.mozilla.org/zh-CN/docs/Glossary/IIFE)
+
+
+
 
 
 
 **相关参考**
 
-拉钩-汪磊老师课程
+<!-- 拉钩-汪磊老师课程 -->
 
