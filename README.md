@@ -307,7 +307,46 @@ webpack 针对不同环境的三组预设配置：
 
 推荐使用mode模式为none，打包结果原理可见
 
+[![bE4CHs.png](https://s4.ax1x.com/2022/02/25/bE4CHs.png)](https://imgtu.com/i/bE4CHs)
+
+执行完打包后的文件，其实是一个立即执行函数（[IIFE](https://developer.mozilla.org/zh-CN/docs/Glossary/IIFE)）
+
 > VScode 中折叠的快捷键是Ctrl+K,Ctrl+0  （macOS： Command+K，Command+0）方便快速折叠展示
+
+[![bEHgMV.png](https://s4.ax1x.com/2022/02/25/bEHgMV.png)](https://imgtu.com/i/bEHgMV)
+
+后面可以使用debug的方式，一步一步的走下去
+
+> webpack的基本使用并不复杂，特别是最新版本进行了配置简化，在这种不复杂的配置下，开发人员对他的掌握能力，主要体现在是否**能够理解工作机制和原理上面**
+
+## loader实现特殊资源的加载
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 **相关参考**
