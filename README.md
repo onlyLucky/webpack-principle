@@ -239,7 +239,25 @@ npx webpack
 >
 >最终打包入口会存放到`dist/main.js`中
 
+下面是webpack相关配置，不再进行过多赘述，详情可以参考webpack官网文档
+```js
+const path = require('path')
+// 这里处于node环境遵循的是CommonJS规范
+module.exports = {
+  entry: './src/index.js', //注意这里的./不能省略
+  output: {
+    filename: 'bundle.js',
+    path: path.join(__dirname,'output')
+  }
+}
+```
+在这里`webpack.config.js`是运行在node环境中的，模块化规范使用CommonJS规范，也可以使用node内置模块
 
+#### 配置文件添加智能提示
+
+webpack的配置项较多，很多选项支持不同类型的配置方式，特别是刚刚接触webpack的配置
+
+下面的方式提供一种方式方便配置
 
 
 **相关参考**
