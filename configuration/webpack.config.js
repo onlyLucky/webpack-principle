@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-02-25 11:23:42
  * @LastEditors: pink
- * @LastEditTime: 2022-02-25 11:43:01
+ * @LastEditTime: 2022-02-25 19:55:53
  * @Description: webpack.config
  */
 const path = require('path')
@@ -18,8 +18,9 @@ const config = {
   entry: './src/index.js', //注意这里的./不能省略
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname,'output')
-  }
+    path: path.join(__dirname,'dist')
+  },
+  mode: 'none'
 }
 
 module.exports = config

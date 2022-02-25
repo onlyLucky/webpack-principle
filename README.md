@@ -303,7 +303,11 @@ webpack 针对不同环境的三组预设配置：
 
 - 通过配置文件中设置mode属性
 
+#### 打包结果运行原理
 
+推荐使用mode模式为none，打包结果原理可见
+
+> VScode 中折叠的快捷键是Ctrl+K,Ctrl+0  （macOS： Command+K，Command+0）方便快速折叠展示
 
 
 **相关参考**
