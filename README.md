@@ -176,6 +176,32 @@ window.moduleB = {
 其中最主流的就是webpack、parcel、和rollup
 
 
+下面以webpack为例：
+
+- webpack作为一个模块打包工具，本身就可以实现模块化代码打包问题，通过webpack可以将零散的js代码打包到一个js文件中
+- 对于有环境兼容问题的代码。webpack可以在打包过程中通过loader机制对其实现编译转换，然后在进行打包
+- 对于不同类型的前端模块，webpack支持在js中以模块化的方式载入任意类型的资源文件
+- 具备代码拆分的能力，能够将应用中心所有的模块按需进行分包，去除了单个文件过大，导致加载慢的问题
+
+
+### webpack快速上手
+
+```shell
+npm init --yes
+npm i webpack webpack-cli --save-dev
+```
+webpack 是webpack的核心模块
+webpack-cli 是webpack的CLI程序，用来命令行中调用webpack
+
+```shell
+npx webpack --version
+```
+npx 是npm 5.2 以后新增的一个命令，可以更方便的执行远程模块或项目node_modules中的CLI程序
+
+
+
+
+
 **相关参考**
 
 <!-- 拉钩-汪磊老师课程 -->
