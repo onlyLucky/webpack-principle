@@ -258,6 +258,28 @@ module.exports = {
 webpack的配置项较多，很多选项支持不同类型的配置方式，特别是刚刚接触webpack的配置
 
 下面的方式提供一种方式方便配置
+```js
+// 一定记得运行webpack前记得注释掉这里
+import {Configuration} from 'webpack'
+
+/** 
+*@type {Configuration} 
+*/
+
+// 这里处于node环境遵循的是CommonJS规范
+const config = {
+  entry: './src/index.js', //注意这里的./不能省略
+  output: {
+    filename: 'bundle.js',
+    path: path.join(__dirname,'output')
+  }
+}
+
+module.exports = config
+```
+添加import语句，只是为了导入webpack配置对象的类型，目的是为了标注config对象的类型
+
+
 
 
 **相关参考**
