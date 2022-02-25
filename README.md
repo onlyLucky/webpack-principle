@@ -186,6 +186,32 @@ window.moduleB = {
 
 ### webpack快速上手
 
+下面是打包项目文件建构
+
+    └─configuration
+          ├── src
+          │    ├─ heading.js
+          │    ├─ index.js
+          └── index.html
+
+详细代码参考[configuration](configuration)
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>webpack-快速上手</title>
+</head>
+<body>
+  <script type="module" src="./src/index.js"></script>
+</body>
+</html>
+```
+这里 `type="module"` 这种用法是ES Modules中提到的标准，用来区分加载的是一个普通的js脚本，还是一个模块
+
+
 ```shell
 npm init --yes
 npm i webpack webpack-cli --save-dev
@@ -199,6 +225,10 @@ npx webpack --version
 npx 是npm 5.2 以后新增的一个命令，可以更方便的执行远程模块或项目node_modules中的CLI程序
 
 
+```shell
+npx webpack
+```
+在执行的过程中，webpack默认会自动从`src/index.js`文件开始打包
 
 
 
