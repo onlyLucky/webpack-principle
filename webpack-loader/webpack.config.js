@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-02-26 22:24:21
  * @LastEditors: pink
- * @LastEditTime: 2022-02-26 22:56:11
+ * @LastEditTime: 2022-02-26 23:15:33
  * @Description: loader webpack config
  */
 // import {Configuration} from 'webpack'
@@ -12,6 +12,7 @@ module.exports = {
   output: {
     filename: 'bundle.js'
   },
+  mode: 'none',
   module: {
     rules:[
       {

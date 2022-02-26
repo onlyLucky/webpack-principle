@@ -360,7 +360,9 @@ module.exports = {
 
 如果你尝试的页面中使用这里输出的bundle.js文件，会发现刚刚的这个main.css模块并没用工作，解决的方案只需要像上面一样添加一个style-loader。
 
+[![beKZbq.png](https://s4.ax1x.com/2022/02/26/beKZbq.png)](https://imgtu.com/i/beKZbq)
 
+上面在只使用css-loader的时候，**css-loader只会把打包遇到的css模块加载到js代码中，而并不会使用这个模块**
 
 [![beZAJJ.jpg](https://s4.ax1x.com/2022/02/26/beZAJJ.jpg)](https://imgtu.com/i/beZAJJ)
 [![beZki4.jpg](https://s4.ax1x.com/2022/02/26/beZki4.jpg)](https://imgtu.com/i/beZki4)
