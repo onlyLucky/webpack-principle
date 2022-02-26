@@ -364,7 +364,34 @@ module.exports = {
 
 上面在只使用css-loader的时候，**css-loader只会把打包遇到的css模块加载到js代码中，而并不会使用这个模块**
 
+
+#### 通过js加载资源模块
 [![beZAJJ.jpg](https://s4.ax1x.com/2022/02/26/beZAJJ.jpg)](https://imgtu.com/i/beZAJJ)
+**为什么要在js中加载其他资源**
+>首先如果不在js中引入类似样式模块，图片文件之类的，就需要你单独将这些资源文件引入到html文件中，再通过js添加相应的逻辑代码，后期资源文件调整，就需要你去**同时维护html和js这两条线**了
+>
+>遵循webpack的设计，所有资源加载都是由js控制，后期只需要维护js代码这一条线了
+>
+>1. 逻辑上比较合理，因为js确实需要这些资源文件配合才能实现整体功能
+>2. 配合webpack这类的工具的打包，能确保在上线时，资源不会丢失，而且都是必要的
+>
+下面是常用的loader，我就不单独进行讲述了，官方文档中都有讲述
+
+- [file-loader](https://www.webpackjs.com/loaders/file-loader/)
+- [url-loader](https://www.webpackjs.com/loaders/url-loader/)
+- [babel-loader](https://www.webpackjs.com/loaders/babel-loader/)
+- [style-loader](https://www.webpackjs.com/loaders/style-loader/)
+- [eslint-loader](https://www.webpackjs.com/loaders/eslint-loader/)
+- [css-loader](https://www.webpackjs.com/loaders/css-loader/)
+- [sass-loader](https://www.webpackjs.com/loaders/sass-loader/)
+- [postcss-loader](https://www.webpackjs.com/loaders/postcss-loader/)
+- [vue-loader](https://www.webpackjs.com/loaders/vue-loader/)
+
+
+#### 开发一个loader
+
+下面将手动开发一个解析markdown语法的md-loader，下图是具体实现的原理
+
 [![beZki4.jpg](https://s4.ax1x.com/2022/02/26/beZki4.jpg)](https://imgtu.com/i/beZki4)
 
 
