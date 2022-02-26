@@ -321,9 +321,49 @@ webpack 针对不同环境的三组预设配置：
 
 ## loader实现特殊资源的加载
 
+详细代码参考[webpack-loader](webpack-loader)
+
 webpack 不仅是javascript模块打包工具，还是整个前端项目（前端工程）的模块打包工具，可以**通过webpack去管理前端项目中的任意类型的资源文件**
 
+单方面直接使用配置打包，特殊资源是不可取的。下图介绍了如何加载资源模块的
 
+[![beZVzR.jpg](https://s4.ax1x.com/2022/02/26/beZVzR.jpg)](https://imgtu.com/i/beZVzR)
+
+可见不同类型文件有不同类型的加载器：
+
+我们可以通过npm先去安装这个loader，到配置文件中添加对应的配置
+```shell
+$ npm install css-loader --save-dev
+
+# or yarn add css-loader --dev
+```
+下面是webpack.config.js配置
+```js
+module.exports = {
+  //样式文件路径
+  entry: './src/main.css',
+  output: {
+    filename: 'bundle.js'
+  },
+  module: {
+    rules:[
+      {
+        test: /\.css$/,//根据打包过程中所遇到的文件路径匹配是否使用该loader
+        use: ['style-loader','css-loader'],//指具体的loader
+      }
+    ]
+  }
+}
+```
+下图大致介绍了加载器的使用过程
+[![beZEW9.jpg](https://s4.ax1x.com/2022/02/26/beZEW9.jpg)](https://imgtu.com/i/beZEW9)
+
+如果你尝试的页面中使用这里输出的bundle.js文件，会发现刚刚的这个main.css模块并没用工作，解决的方案只需要像上面一样添加一个style-loader。
+
+
+
+[![beZAJJ.jpg](https://s4.ax1x.com/2022/02/26/beZAJJ.jpg)](https://imgtu.com/i/beZAJJ)
+[![beZki4.jpg](https://s4.ax1x.com/2022/02/26/beZki4.jpg)](https://imgtu.com/i/beZki4)
 
 
 
@@ -355,3 +395,4 @@ webpack 不仅是javascript模块打包工具，还是整个前端项目（前�
 <!-- 拉钩-汪磊老师课程 -->
 
 [md官方文档](https://markdown.com.cn/)
+[webppack官方文档](https://www.webpackjs.com/concepts/)
