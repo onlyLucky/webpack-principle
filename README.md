@@ -454,9 +454,26 @@ module.exports = source => {
 > - 安装完成之后，在markdown-loader.js中导入
 > - 使用这个模块解析source
 
+最后实现loader，也很简单
+```js
+const marked = require('marked')
 
+module.exports = source => {
+  // 转换markdown语法为html
+  const html = marked(source)
+  // const code = `module.exports = ${JSON.stringify(html)}`
+  const code = `export default ${JSON.stringify(html)}`
+  return code
+}
+```
 
+**多个loader配合使用**
 
+我们现在可以更改loader，只返回转义后的html文件字符串，再使用html-loader处理html文件，安装依赖，再将webpack md 文件loader ，将use属性更改为数组，依次引入多个loader， **这里注意一点，loader的加载顺序是从右向左执行处理的**
+
+> 总结：
+>
+>loader机制是webpack最核心的机制，正因为有loader机制，webpack才能足以支持整个前端项目模块化的大梁，实现通过webpack去加载任何你想加载的资源
 
 
 
