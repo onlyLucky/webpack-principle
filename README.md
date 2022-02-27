@@ -501,5 +501,5 @@ module.exports = source => {
 
 <!-- 拉钩-汪磊老师课程 -->
 
-[md官方文档](https://markdown.com.cn/)
-[webppack官方文档](https://www.webpackjs.com/concepts/)
+- [md官方文档](https://markdown.com.cn/)
+- [webppack官方文档](https://www.webpackjs.com/concepts/)
