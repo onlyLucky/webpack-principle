@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-02-27 20:09:43
  * @LastEditors: pink
- * @LastEditTime: 2022-02-27 20:12:29
+ * @LastEditTime: 2022-02-27 20:27:24
  * @Description: md-loader webpack config
  */
 
@@ -11,6 +11,7 @@ module.exports = {
   output: {
     filename: 'bundle.js'
   },
+  mode: 'none',
   module: {
     rules: [
       {

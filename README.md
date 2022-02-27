@@ -390,9 +390,70 @@ module.exports = {
 
 #### 开发一个loader
 
+详细代码参考[md-loader](md-loader)
+
 下面将手动开发一个解析markdown语法的md-loader，下图是具体实现的原理
 
 [![beZki4.jpg](https://s4.ax1x.com/2022/02/26/beZki4.jpg)](https://imgtu.com/i/beZki4)
+
+- 添加md文件loader处理文件(markdown-loader.js)添加
+
+```js
+module.exports = source => {
+  // 加载到的模块内容 => '#About\n\nthis is a makedown file.'
+  console.log(source)
+  // 返回值就是最终被打包内容
+  return 'hello loader'
+}
+```
+- 将上面loader绑定wepack配置文件，处理md后缀文件
+
+```js
+module.exports = {
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js'
+  },
+  mode: 'none',
+  module: {
+    rules: [
+      {
+        test: /.md$/,
+        // 直接使用相对路径
+        use: './markdown-loader.js'
+      }
+    ]
+  }
+}
+```
+执行`npm run build`之后直接执行获取结果
+
+[![bnGR74.png](https://s4.ax1x.com/2022/02/27/bnGR74.png)](https://imgtu.com/i/bnGR74)
+
+> Any Source ==> loader1 ==> loader2 ==> loader3 ==> JavaScript Code
+>
+> 解决方法：
+>- 直接在这个loader的最后返回一段js代码字符串
+>- 再找一个合适的加载器，在后面接着处理我们得到的结果
+
+上面报了个错，是因为我们自己编写的loader return 返回的是js代码字符串，修改为`console.log("hello loader~")`,然后再次运行打包
+
+```js
+module.exports = source => {
+  // 加载到的模块内容 => '#About\n\nthis is a makedown file.'
+  console.log(source)
+  // 返回值就是最终被打包内容
+  return 'console.log("hello loader~")'
+}
+```
+下图是打包后的结果：
+[![bnUKJJ.png](https://s4.ax1x.com/2022/02/27/bnUKJJ.png)](https://imgtu.com/i/bnUKJJ)
+
+> **实现loader逻辑**
+> - 需要安装一个能够将markdown解析为html的模块 -- marked
+> - 安装完成之后，在markdown-loader.js中导入
+> - 使用这个模块解析source
+
 
 
 
