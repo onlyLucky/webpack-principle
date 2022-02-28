@@ -20,6 +20,11 @@
 ## 目录
 
 1. [webpack解决问题](#webpack解决问题)
+2. [使用webpack实现模块化打包](#使用webpack实现模块化打包)
+3. [loader实现特殊资源的加载](#loader实现特殊资源的加载)
+4. [plugin插件机制](#plugin插件机制)
+
+
 
 ## webpack解决问题
 
@@ -186,7 +191,7 @@ window.moduleB = {
 >webpack 从一个打包工具，发展成为前端项目构建系统，虽然表面上只是发生了名称上的变化，但是背后透露出来的是：模块化思想的伟大，可以帮助你统治前端整个项目
 
 
-## 二、使用webpack实现模块化打包
+## 使用webpack实现模块化打包
 
 - 能够将散落的模块打包在一起
 - 能够编译代码中的新特性
@@ -338,7 +343,7 @@ webpack 针对不同环境的三组预设配置：
 
 > webpack的基本使用并不复杂，特别是最新版本进行了配置简化，在这种不复杂的配置下，开发人员对他的掌握能力，主要体现在是否**能够理解工作机制和原理上面**
 
-## 三、loader实现特殊资源的加载
+## loader实现特殊资源的加载
 
 详细代码参考[webpack-loader](webpack-loader)
 
@@ -495,7 +500,7 @@ module.exports = source => {
 >loader机制是webpack最核心的机制，正因为有loader机制，webpack才能足以支持整个前端项目模块化的大梁，实现通过webpack去加载任何你想加载的资源
 
 ---
-## 四、plugin 插件机制
+## plugin插件机制
 
 上一次讲的是loader，这里当前主要目的是了解plugin插件机制如何横向扩展webpack的构建能力
 
