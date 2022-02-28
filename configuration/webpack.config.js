@@ -2,10 +2,13 @@
  * @Author: pink
  * @Date: 2022-02-25 11:23:42
  * @LastEditors: pink
- * @LastEditTime: 2022-02-25 19:55:53
+ * @LastEditTime: 2022-02-28 11:40:57
  * @Description: webpack.config
  */
 const path = require('path')
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 // 一定记得运行webpack前记得注释掉这里
 // import {Configuration} from 'webpack'
 
@@ -20,7 +23,16 @@ const config = {
     filename: 'bundle.js',
     path: path.join(__dirname,'dist')
   },
-  mode: 'none'
+  mode: 'none',
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'webpack plugins add',
+      meta: {
+        viewport: 'width=device-width'
+      }
+    })
+  ]
 }
 
 module.exports = config

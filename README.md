@@ -1,19 +1,17 @@
 <div align="center">
   <h1>webpack-principle</h1>
   <p>对webpack打包工具的个人理解,原理的部分实践</p>
-
   <a href="https://github.com/onlyLucky/webpack-principle">
-    <img src="https://s4.ax1x.com/2022/02/28/bu6BJx.png" alt="node" border="0">
-  <a href="https://github.com/onlyLucky/webpack-principle">
-    <img src="https://s4.ax1x.com/2022/02/28/bu6yQO.png" alt="npm" border="0">
+    <img src="https://s4.ax1x.com/2022/02/28/bu6BJx.png" alt="node">
   </a>
   <a href="https://github.com/onlyLucky/webpack-principle">
-    <img src="https://s4.ax1x.com/2022/02/28/bu6sSK.png" alt="build" border="0">
+    <img src="https://s4.ax1x.com/2022/02/28/bu6yQO.png" alt="npm">
   </a>
   <a href="https://github.com/onlyLucky/webpack-principle">
-    <img src="https://s4.ax1x.com/2022/02/28/bu6DW6.png" alt="license" border="0">
+    <img src="https://s4.ax1x.com/2022/02/28/bu6sSK.png" alt="build">
   </a>
-  
+  <a href="https://github.com/onlyLucky/webpack-principle">
+    <img src="https://s4.ax1x.com/2022/02/28/bu6DW6.png" alt="license">
   </a>
 </div>
 
@@ -524,7 +522,12 @@ module.exports = source => {
 > 所以，在每次完整打包之前，自动清理dist目录，每次打包后，dist目录中就只会存在那些必要的文件
 
 
+- 安装相应插件依赖
 
+```shell
+$ npm install html-webpack-plugin clean-webpack-plugin --save-dev
+```
+安装完成后会到配置文件，载入这个模块。 不同`clean-webpack-plugin`，`html-webpack-plugin`插件默认导出为插件类型，不需要结构内部成员
 
 
 
