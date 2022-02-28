@@ -2,6 +2,12 @@
 
 > 对webpack打包工具的个人理解
 
+
+
+[TOC]
+
+
+
 ## 一、webpack 解决问题
 
 如何在前端项目中更高效的管理和维护项目中的每一个资源，想要理解webpack，就要先对它想要解决的问题或者目标有一个充分认识
@@ -195,7 +201,7 @@ window.moduleB = {
           ├── index.html
           ├── package.json
           └── webpack.config.js   ......... webpack配置文件
-          
+
 
 详细代码参考[configuration](configuration)
 ```html
@@ -492,7 +498,7 @@ module.exports = source => {
 
 
 ### 体验插件机制
- :joy_cat: 
+
 > webpack 每次打包的结果直接覆盖到dist目录，**打包前，dist目录中就有可能已经存入了一些在上次打包操作时遗留的文件**，再次打包，**只能覆盖同名的文件**。已经移除的资源文件就会一直累积，最终导致部署上线出现多余文件
 >
 > 这个合理 :joy_cat: 吗？ 显而易见不是河狸
