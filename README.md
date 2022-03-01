@@ -588,6 +588,35 @@ plugins: [
   ]
 ```
 
+- 用于复制文件的插件
+
+项目中一般还有些不需要参与构建的静态文件，最终也需要发布到线上，我们可以使用copy-webpack-plugin
+
+```js
+plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'webpack plugins add',
+      meta: {
+        viewport: 'width=device-width'
+      }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'about.html'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: path.join(__dirname,'public'),to: 'public'}
+      ],
+    })
+  ]
+```
+
+
+
+
+
+
 
 
 
