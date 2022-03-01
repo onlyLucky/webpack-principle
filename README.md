@@ -529,7 +529,64 @@ $ npm install html-webpack-plugin clean-webpack-plugin --save-dev
 ```
 安装完成后会到配置文件，载入这个模块。 不同`clean-webpack-plugin`，`html-webpack-plugin`插件默认导出为插件类型，不需要结构内部成员
 
+- webpack配置文件引用
 
+```js
+const path = require('path')
+
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+
+const config = {
+  entry: './src/index.js', //注意这里的./不能省略
+  output: {
+    filename: 'bundle.js',
+    path: path.join(__dirname,'dist')
+  },
+  mode: 'none',
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'webpack plugins add',
+      meta: {
+        viewport: 'width=device-width'
+      }
+    })
+  ]
+}
+
+module.exports = config
+```
+对于生成的html文件，如果title需要修改，还有一些自定义meta标签和一些基础的DOM结构，可以对htmlWebpackPlugin进行添加配置
+
+- 打包后结果
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>webpack plugins add</title>
+  <meta name="viewport" content="width=device-width"><script defer src="bundle.js"></script></head>
+  <body>
+  </body>
+</html>
+```
+
+html-webpack-plugin插件除了自定义输出文件内容，可以同时添加多个html文件。
+```js
+plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'webpack plugins add',
+      meta: {
+        viewport: 'width=device-width'
+      }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'about.html'
+    })
+  ]
+```
 
 
 

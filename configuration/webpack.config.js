@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-02-25 11:23:42
  * @LastEditors: pink
- * @LastEditTime: 2022-02-28 11:40:57
+ * @LastEditTime: 2022-03-01 21:53:55
  * @Description: webpack.config
  */
 const path = require('path')
@@ -31,6 +31,9 @@ const config = {
       meta: {
         viewport: 'width=device-width'
       }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'about.html'
     })
   ]
 }
