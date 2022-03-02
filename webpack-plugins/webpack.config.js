@@ -1,11 +1,11 @@
 /*
  * @Author: pink
- * @Date: 2022-02-26 22:24:21
+ * @Date: 2022-03-02 21:30:01
  * @LastEditors: pink
- * @LastEditTime: 2022-03-02 22:34:30
- * @Description: loader webpack config
+ * @LastEditTime: 2022-03-02 22:34:03
+ * @Description: webpack配置
  */
-// import {Configuration} from 'webpack'
+
 module.exports = {
   //样式文件路径
   entry: './src/main.js',
