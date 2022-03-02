@@ -613,11 +613,66 @@ plugins: [
 ```
 ### 开发一个插件
 
+详细代码参考[webpack-plugins](webpack-plugins)
+
 插件机制
 
 > 任务==>任务==>任务==>任务==>任务==>任务
 
 插件的机制上是将一个任务一个任务作为钩子函数挂载到webpack上，下面将会开发一个plugin将打包后文件中存在的注释去除掉
+
+> emit    AsyncSeriesHook
+> 
+> 这个钩子会在webpack即将向输出目录输出文件时执行
+
+```js
+// remove-webpack-plugin.js
+lass RemoveCommentsPlugin{
+  apply(compiler){
+    console.log('RemoveCommentsPlugin')
+    // compile 包含了这次构建的所有配置
+    compiler.hooks.emit.tap('RemoveCommentsPlugin',compilation=>{
+      // compilation 可以理解为此次打包的上下文
+      for(const name in compilation.assets){
+        console.log(name)//输出文件名称
+      }
+    })
+  }
+}
+module.exports = RemoveCommentsPlugin;
+```
+
+```js
+//webpack.config.js
+const RemoveCommentsPlugin = require('./remove-comment-plugin.js')
+module.exports = {
+  //样式文件路径
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js'
+  },
+  mode: 'none',
+  module: {
+    rules:[
+      {
+        test: /\.css$/,//根据打包过程中所遇到的文件路径匹配是否使用该loader
+        use: ['style-loader','css-loader'],//指具体的loader
+      }
+    ]
+  },
+  plugins: [
+    new RemoveCommentsPlugin()
+  ]
+}
+```
+
+打印出来的结果为
+```js
+RemoveCommentsPlugin
+bundle.js
+```
+
+
 
 
 
