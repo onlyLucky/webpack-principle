@@ -21,6 +21,7 @@
 2. [使用webpack实现模块化打包](#使用webpack实现模块化打包)
 3. [loader实现特殊资源的加载](#loader实现特殊资源的加载)
 4. [plugin插件机制](#plugin插件机制)
+5. [webpack运行机制和核心工作原理](webpack运行机制和核心工作原理)
 
 
 
@@ -679,8 +680,11 @@ bundle.js
 >- webpack为每一个工作环节都预留了合适的钩子
 >- 扩展时只需要找到合适的时机去做合适的事情
 
+[webpack 自定义插件](https://webpack.docschina.org/contribute/writing-a-plugin/)
 
+## webpack运行机制和核心工作原理
 
+[![bGfK1S.png](https://s4.ax1x.com/2022/03/02/bGfK1S.png)](https://imgtu.com/i/bGfK1S)
 
 
 
