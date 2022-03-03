@@ -2,13 +2,14 @@
  * @Author: pink
  * @Date: 2022-02-25 11:23:42
  * @LastEditors: pink
- * @LastEditTime: 2022-02-28 11:40:57
+ * @LastEditTime: 2022-03-01 22:21:36
  * @Description: webpack.config
  */
 const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 // 一定记得运行webpack前记得注释掉这里
 // import {Configuration} from 'webpack'
 
@@ -31,6 +32,14 @@ const config = {
       meta: {
         viewport: 'width=device-width'
       }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'about.html'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: path.join(__dirname,'public'),to: 'public'}
+      ],
     })
   ]
 }

@@ -21,6 +21,7 @@
 2. [使用webpack实现模块化打包](#使用webpack实现模块化打包)
 3. [loader实现特殊资源的加载](#loader实现特殊资源的加载)
 4. [plugin插件机制](#plugin插件机制)
+5. [webpack运行机制和核心工作原理](webpack运行机制和核心工作原理)
 
 
 
@@ -531,12 +532,182 @@ $ npm install html-webpack-plugin clean-webpack-plugin --save-dev
 ```
 安装完成后会到配置文件，载入这个模块。 不同`clean-webpack-plugin`，`html-webpack-plugin`插件默认导出为插件类型，不需要结构内部成员
 
+- webpack配置文件引用
 
+```js
+const path = require('path')
 
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
+const config = {
+  entry: './src/index.js', //注意这里的./不能省略
+  output: {
+    filename: 'bundle.js',
+    path: path.join(__dirname,'dist')
+  },
+  mode: 'none',
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'webpack plugins add',
+      meta: {
+        viewport: 'width=device-width'
+      }
+    })
+  ]
+}
 
+module.exports = config
+```
+对于生成的html文件，如果title需要修改，还有一些自定义meta标签和一些基础的DOM结构，可以对htmlWebpackPlugin进行添加配置
 
+- 打包后结果
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>webpack plugins add</title>
+  <meta name="viewport" content="width=device-width"><script defer src="bundle.js"></script></head>
+  <body>
+  </body>
+</html>
+```
 
+html-webpack-plugin插件除了自定义输出文件内容，可以同时添加多个html文件。
+```js
+plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'webpack plugins add',
+      meta: {
+        viewport: 'width=device-width'
+      }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'about.html'
+    })
+  ]
+```
+
+- 用于复制文件的插件
+
+项目中一般还有些不需要参与构建的静态文件，最终也需要发布到线上，我们可以使用copy-webpack-plugin
+
+```js
+plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'webpack plugins add',
+      meta: {
+        viewport: 'width=device-width'
+      }
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'about.html'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: path.join(__dirname,'public'),to: 'public'}
+      ],
+    })
+  ]
+```
+### 开发一个插件
+
+详细代码参考[webpack-plugins](webpack-plugins)
+
+插件机制
+
+> 任务==>任务==>任务==>任务==>任务==>任务
+
+插件的机制上是将一个任务一个任务作为钩子函数挂载到webpack上，下面将会开发一个plugin将打包后文件中存在的注释去除掉
+
+> emit    AsyncSeriesHook
+> 
+> 这个钩子会在webpack即将向输出目录输出文件时执行
+
+```js
+// remove-webpack-plugin.js
+lass RemoveCommentsPlugin{
+  apply(compiler){
+    console.log('RemoveCommentsPlugin')
+    // compile 包含了这次构建的所有配置
+    compiler.hooks.emit.tap('RemoveCommentsPlugin',compilation=>{
+      // compilation 可以理解为此次打包的上下文
+      for(const name in compilation.assets){
+        console.log(name)//输出文件名称
+      }
+    })
+  }
+}
+module.exports = RemoveCommentsPlugin;
+```
+
+```js
+//webpack.config.js
+const RemoveCommentsPlugin = require('./remove-comment-plugin.js')
+module.exports = {
+  //样式文件路径
+  entry: './src/main.js',
+  output: {
+    filename: 'bundle.js'
+  },
+  mode: 'none',
+  module: {
+    rules:[
+      {
+        test: /\.css$/,//根据打包过程中所遇到的文件路径匹配是否使用该loader
+        use: ['style-loader','css-loader'],//指具体的loader
+      }
+    ]
+  },
+  plugins: [
+    new RemoveCommentsPlugin()
+  ]
+}
+```
+
+打印出来的结果为
+```js
+RemoveCommentsPlugin
+bundle.js
+```
+
+> **总结**
+>
+>- 简单了解几个非常常用的插件，一般都适用于任何类型的项目，不管你有没有使用框架，或者使用的是哪一个框架，基本上都能用到
+>- 通过一个简单的插件开发过程，了解插件机制的工作原理
+>- webpack为每一个工作环节都预留了合适的钩子
+>- 扩展时只需要找到合适的时机去做合适的事情
+
+[webpack 自定义插件](https://webpack.docschina.org/contribute/writing-a-plugin/)
+
+## webpack运行机制和核心工作原理
+
+[![bGfK1S.png](https://s4.ax1x.com/2022/03/02/bGfK1S.png)](https://imgtu.com/i/bGfK1S)
+
+### 工作过程
+
+webpack在整个打包的过程中：
+
+- 通过loader处理特殊类型资源的加载，例如加载样式、图片
+- 通过plugin实现各种自动化的构建任务，例如自动压缩、自动发布
+
+### 工作原理剖析
+
+如果想了解webpack整个工作过程的细节，那就需要**更深入的了解刚刚说到的环节**，他们落实到代码层面上到底做了些什么，或者说如何实现的，**必须有针对的查阅webpack源码**
+
+> **查阅源码的思路：**
+>1. webpack CLI启动打包流程
+>2. 载入webpack核心模块，创建compiler对象
+>3. 使用compiler对象开始编译整个项目
+>4. 从入口文件开始，解析模块依赖，形成依赖关系树
+>5. 递归依赖树，将每个模块交给对应的loader处理
+>6. 合并loader处理完的结果，将打包结果输出到dist目录
+
+### webpack CLI
 
 
 
