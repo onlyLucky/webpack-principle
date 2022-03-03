@@ -709,6 +709,10 @@ webpack在整个打包的过程中：
 
 ### webpack CLI
 
+webpack CLI 作用是将CLI 参数和webpack配置文件中的配置整合得到一个完整的配置对象。
+
+
+webpack CLI 会通过yargs模块解析CLI参数（运行webpack命令时通过命令行传入的参数）
 
 
 
