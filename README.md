@@ -728,7 +728,19 @@ webpack CLI 会通过yargs模块解析CLI参数（运行webpack命令时通过�
 **make阶段**
 
 1. SingleEntryPlugin中调用了Compilation对象的addEntry方法，开始解析入口
-2. 
+2. addEntry方法中又调用了_addModuleChain方法，将入口模块添加到模块依赖列表中
+3. 紧接着通过Compilation对象的buildModule方法进行模块构建
+4. buildModule方法中执行具体的loader，处理特殊资源加载
+5. build完成过后，通过acorn库生成模块代码的AST语法树
+6. 根据语法树分析这个模块是否还有依赖的模块，如果有则继续循环build每个依赖
+7. 所有依赖解析完成，build阶段结束
+8. 最后合并生成需要输出的bundle.js写入dist目录
+
+
+
+
+
+
 
 
 
