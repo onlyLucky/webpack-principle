@@ -714,7 +714,21 @@ webpack CLI 作用是将CLI 参数和webpack配置文件中的配置整合得到
 
 webpack CLI 会通过yargs模块解析CLI参数（运行webpack命令时通过命令行传入的参数）
 
+- webpack CLI 会通过yargs模块解析CLI参数（运行webpack命令时通过命令行传入参数）
+- 通过调用bin/utils/convert-argv.js模块将得到的命令转换为webpack的配置选项对象
+- 开始载入webpack核心模块，传入配置选项，创建comiler对象
+  - 如果是监视模式就调用compile对象的watch方法，以监视模式启动构建但这不是主要关心的主线
+  - 如果不是监视模式就调用compiler对象的run方法，开始构建整个应用
+  - 具体文件在webpack模块下的lib.compiler.js
+- mark阶段主体的目标
+  - 根据entry配置找到入口模块，开始依次递归出所有依赖，形成依赖关系树，然后将递归到的每个1模块交给不同的loader处理
+  - Tapable注册方式
+  - 默认使用的就是单一入口打包的方式，所以这里最终会执行其中的SingleEntryPlugin
 
+**make阶段**
+
+1. SingleEntryPlugin中调用了Compilation对象的addEntry方法，开始解析入口
+2. 
 
 
 
