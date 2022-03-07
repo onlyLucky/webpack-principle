@@ -22,6 +22,7 @@
 3. [loader实现特殊资源的加载](#loader实现特殊资源的加载)
 4. [plugin插件机制](#plugin插件机制)
 5. [webpack运行机制和核心工作原理](webpack运行机制和核心工作原理)
+6. [使用DevServer提高本地开发效率](使用DevServer提高本地开发效率)
 
 
 
@@ -736,9 +737,24 @@ webpack CLI 会通过yargs模块解析CLI参数（运行webpack命令时通过�
 7. 所有依赖解析完成，build阶段结束
 8. 最后合并生成需要输出的bundle.js写入dist目录
 
+## 使用DevServer提高本地开发效率
 
+> - 必须能够使用HTTP服务器运行而不是文件形式预览
+> - 在我们修改完成代码之后，webpack能够自动完成构建，然后浏览器可以即时显示最新的运行结果
+> - 需要能提供Source Map支持。能够快速定位到源码中的位置
 
+### webpack 自动编译
 
+**watch模式下**
+webpack 完成初次构建过后，项目中的源文件会被监视，一旦发生任何改动，webpack都会自动重新运行打包任务
+
+**具体用法：**
+
+启动webpack时，添加一个`--watch` 的CLI参数，webpack就会以监视模式启动运行，在打包完成过后，CLI不会立即退出，它会等待文件变化再次工作，直到我们手动结束它或是出现不可控的异常
+
+```shell
+$ webpack --watch
+```
 
 
 
