@@ -753,9 +753,20 @@ webpack 完成初次构建过后，项目中的源文件会被监视，一旦发
 启动webpack时，添加一个`--watch` 的CLI参数，webpack就会以监视模式启动运行，在打包完成过后，CLI不会立即退出，它会等待文件变化再次工作，直到我们手动结束它或是出现不可控的异常
 
 ```shell
-$ webpack --watch
-```
+# 可以先通过npm全局安装brower-sync模块，然后再使用这个模块
+$ npm install browser-sync --global
+$ browser-sync dist --watch
 
+# 或者也可以使用npx直接使用远端模块
+$ npx browser-sync dist --watch
+```
+这种watch模式+BrowserSync虽然实现了我们的需求，但是这种方法有很多的弊端。
+- 操作繁琐，我们需要同时使用两个工具，那就需要了解的内容就会更多，学习成本大大提高
+- 效率低下，因为整个过程中，webpack会将文件写盘中，BrowserSync再进行读取过程中涉及大量磁盘读写操作，必然会导致效率低下
+
+### Webpack Dev Server
+
+是webpack
 
 
 
