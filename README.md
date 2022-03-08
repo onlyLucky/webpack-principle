@@ -766,8 +766,43 @@ $ npx browser-sync dist --watch
 
 ### Webpack Dev Server
 
-是webpack
+是webpack官方推出的一款开发工具
 
+它提供一个开发服务器
+
+并且将自动编译和自动刷新浏览器等一系列对开发友好的功能全部集成在一起
+
+推出初衷就是为了提高开发者日常开发效率，使用这个工具就可以解决我在开头提出的问题。
+
+```shell
+# 安装webpack-dev-server
+$ npm install webpack-dev-server --save-dev
+# 运行webpack-dev-server
+$ npx webpack-dev-server
+```
+
+webpack-dev-server 相关流程：
+
+
+webpack构建 ==> 内存 ==>HTTP Server
+
+```js
+const path = require('path')
+module.exports = {
+  devServer: {
+    contentBase: path.join(__dirname,'dist'),
+    compress: true,
+    port: 9000
+  }
+}
+```
+[更多配置](https://webpack.js.org/configuration/dev-server/#devserver)
+
+### 静态资源访问
+
+webpack-dev-server默认会将构建结果和输出文件全部作为开发服务器的资源文件
+
+只要通过webpack
 
 
 
