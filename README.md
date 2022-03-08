@@ -23,6 +23,7 @@
 4. [plugin插件机制](#plugin插件机制)
 5. [webpack运行机制和核心工作原理](webpack运行机制和核心工作原理)
 6. [使用DevServer提高本地开发效率](使用DevServer提高本地开发效率)
+7. [sourceMap配置](sourceMap配置)
 
 
 
@@ -866,6 +867,36 @@ module.exports = {
 
 
 ## sourceMap配置
+
+source --->source map ---> compiled
+
+
+
+### 配置
+
+```js
+module.exports = {
+  devtool: 'source-map'
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 **相关参考**
