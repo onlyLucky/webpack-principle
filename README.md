@@ -802,7 +802,30 @@ module.exports = {
 
 webpack-dev-server默认会将构建结果和输出文件全部作为开发服务器的资源文件
 
-只要通过webpack
+只要通过webpack打包能够输出的文件都可以直接被访问到
+
+但是如果还有一些没有参与打包的静态文件也需要作为开发服务器的资源访问
+
+那就需要额外通过配置告诉webpack-dev-server
+
+
+相对应的配置是：
+
+```js
+module.exports = {
+  devServer: {
+    contentBase: 'public'
+  }
+}
+```
+
+实际使用webpack时，一般都会把copy-webpack-plugin这种插件留在上线前，那一次打包中使用，而开发过程中一般不会使用它
+
+
+### proxy代理
+
+在实际的生产环境中能够直接访问的API，回到开发环境后，再次访问这些API就会产生跨域请求问题。
+
 
 
 
