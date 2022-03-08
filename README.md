@@ -826,8 +826,46 @@ module.exports = {
 
 在实际的生产环境中能够直接访问的API，回到开发环境后，再次访问这些API就会产生跨域请求问题。
 
+解决这种开发阶段跨域请求问题最好的办法，在开发服务器中配置一个后端API的代理服务，也就是把后端接口服务代理到本地开发服务地址
+
+后端接口是： `https://api.github.com/users`
+
+相关代理配置：
+```js
+module.exports = {
+  devServer: {
+    proxy: {
+      '/api':{
+        target: 'https://api.github.com'
+      }
+    }
+  }
+}
+```
+此时请求`http://localhost:8080/api/users`就相当于请求了`https://api.github.com/api/users`
+
+添加一个pathRewrite属性来实现代理路径重写，重写规则就是把路径中开头的/api替换掉
+
+```js
+module.exports = {
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'https://api.github.com',
+        pathRewrite: {
+          '^/api': ''//替换掉代理地址中的/api
+        },
+        changeOrigin: true//确保请求github的主机名就是api.github.com
+      }
+    }
+  }
+}
+```
+
+`http://localhost:8080/api/users` ==> `https://api.github.com/users`
 
 
+## sourceMap配置
 
 
 **相关参考**
