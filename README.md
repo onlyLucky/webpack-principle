@@ -874,6 +874,8 @@ source --->source map ---> compiled
 
 ### 配置
 
+
+
 常见的map转换的代码会有一个注释`//# sourceMappingURL=bundle.js.map`指向map文件
 
 
@@ -909,6 +911,22 @@ const code = 'console.log("foo~")'
 eval(code)//将code中的字符串作为js代码执行
 ```
 
+查看更多源码部分[devtool-diff](devtool-diff)
+
+**这里需要留意一下，进行就js出来的时候，安装babel-loader的时候，相对应的还需要安装@babel/core @babel/preset-env进行处理**
+
+1. 定义devtool属性，它就是当前所遍历的模式名称
+2. 将mode设置为none，确保webpack内部不做额外的处理
+3. 设置打包入口及输出文件名称，打包输出文件名称以各个模式中的名称为主
+4. 为js文件配置一个babel-loader，主要目的是为了能够辨别其中一类模式的差异
+5. 配置一个html-webpack-plugin，也就是为每一个打包文件任务生成一个html文件，方便我们更好的观察各个模式之间的区别（可以在打包文件夹的地方起一个服务）
+
+**js文件添加loader配置的原因：**
+
+因为这种名字中带module的模式，解析出来的源代码是没有经过loader处理过的，**而名字中不带module的模式，解析出来的源码是经过loader加工之后的结果** 也就是说如果我们想要一模一样的的源代码，就需要选择像cheap-module-eval-source-map之类带module的模式
+
+
+### 不同模式对比
 
 
 
