@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-02-25 11:23:42
  * @LastEditors: pink
- * @LastEditTime: 2022-03-01 22:21:36
+ * @LastEditTime: 2022-03-09 09:13:00
  * @Description: webpack.config
  */
 const path = require('path')
@@ -41,7 +41,8 @@ const config = {
         { from: path.join(__dirname,'public'),to: 'public'}
       ],
     })
-  ]
+  ],
+  devtool: 'source-map'
 }
 
 module.exports = config
