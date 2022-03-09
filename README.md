@@ -1015,10 +1015,63 @@ module.exports = {
 >A3: 这是因为你使用的是框架，使用框架开发时，我们项目中的每一个文件就有了规律，例如react中要求每一个模块导出的必须是一个函数或者类，那这样就可以有通用的替换方法，所以这些工具内部都已经帮你实现了通用的替换操作，自然就不需要手动处理了。
 
 
+**HMR APIs**
 
+```js
+//.src/main.js
+import crateEditor from './editor'
+import logo from './icon.png'
+import './global.css'
 
+const img = new Image()
+img.src = logo
+document.body.appendChild(img)
+const editor = createEditor()
+document.body.appendChild(editor)
+```
+一旦这些模块更新了过后，在main.js中就必须重新使用更新后的模块
 
+第一个参数就是editor模块路径，第二个参数则需要我们传入一个函数
 
+```js
+//./src/main.js
+// ...原本的业务
+module.hot.accept('./editor',()=>{
+  // 当./editor.js 更新，自动执行此函数
+  console.log('editor 更新了')
+})
+```
+HMR处理
+```js
+//./src/main.js
+import crateEditor from './editor'
+const editor = createEditor()
+document.body.appendChild(editor)
+// ...原本的业务
+module.hot.accept('./editor',()=>{
+  document.body.removeChild(editor)
+  const newEditor = createEditor()
+  document.body.appendChild(newEditor)
+})
+```
+热替换的状态保持
+
+```js
+let lastEditor = editor
+module.hot.accept('./editor',()=>{
+  // 临时记录更新前编译器内容
+  const value = lastEditor.innerHTML
+  // 移除更新前的元素
+  document.body.removeChild(lastEditor)
+  // 创建新的编译器
+  lastEditor = createEditor()
+  // 还原编译器内容
+  lastEditor.innerHTML = value
+  // 追加到页面
+  document.body.appendChild(newEditor)
+})
+```
+图片模块热替换
 
 
 
