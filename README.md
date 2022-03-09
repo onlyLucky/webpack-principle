@@ -24,6 +24,7 @@
 5. [webpack运行机制和核心工作原理](webpack运行机制和核心工作原理)
 6. [使用DevServer提高本地开发效率](使用DevServer提高本地开发效率)
 7. [sourceMap配置](sourceMap配置)
+8. [HMR模块热替换机制](HMR模块热替换机制)
 
 
 
@@ -958,7 +959,7 @@ eval(code)//将code中的字符串作为js代码执行
 - source map 并不是webpack特有的功能，他们两者的关系只是： webpack支持source-map
 
 
-
+## HMR模块热替换机制
 
 
 
