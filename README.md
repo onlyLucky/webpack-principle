@@ -25,6 +25,7 @@
 6. [使用DevServer提高本地开发效率](使用DevServer提高本地开发效率)
 7. [sourceMap配置](sourceMap配置)
 8. [HMR模块热替换机制](HMR模块热替换机制)
+9. [webpack高级特性及应对项目优化需求](webpack高级特性及应对项目优化需求)
 
 
 
@@ -1083,6 +1084,25 @@ if(module.hot){//确保有HMR API 对象
 })
 }
 ```
+
+### 写在最后
+
+你可能觉得HMR比较麻烦，需要写一些额外的代码，甚至觉得不如不用，但是个人觉得利大于弊
+
+关于框架的HMR，因为在大多数情况下是开箱即用的，所以这里不做过多的介绍，详情可以参考：
+- [React HMR方案](https://ahooks.js.org/zh-CN/guide/blog/hmr/)
+- [Vue.js HMR方案](https://vue-loader.vuejs.org/guide/hot-reload.html)
+
+
+## webpack高级特性及应对项目优化需求
+
+
+
+
+
+
+
+
 
 
 
