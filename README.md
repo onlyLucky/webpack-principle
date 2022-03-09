@@ -874,16 +874,40 @@ source --->source map ---> compiled
 
 ### 配置
 
+常见的map转换的代码会有一个注释`//# sourceMappingURL=bundle.js.map`指向map文件
+
+
 ```js
 module.exports = {
   devtool: 'source-map'
 }
 ```
 
+下表是devtool取值之间的各种对比
 
+| devtool取值   | 初次构建 | 重新构建 |适合生产环境| 品质 |
+| :---:        |:----: | :---: |:---: |:---: |
+| (none)       |   最快     | 最快  | 是  |  无         | 
+| eval         |   最快     | 最快  | 否  |  转换后代码  | 
+| cheap-eval-source-map|   快     | 更快  | 否 |  转换后代码（只有行信息）  | 
+| cheap-module-eval-source-map      |   慢     | 更快  | 否  |  源码（只有行信息）  | 
+| eval-source-map     |   最慢     | 慢  | 否  |  完整源代码  | 
+| cheap-source-map       |   快     | 慢  | 是  |  转换后代码（只有行信息）  | 
+| cheap-module-source-map      |   慢     | 更慢  | 是  |  源代码（只有行信息） | 
+| inline-cheap-source-map       |   快     | 慢  | 否  |  转换后代码（只有行信息） | 
+| inline-cheap-module-source-map       |   慢     | 更慢  | 否  |  源代码（只有行信息）  | 
+| source-map      |   最慢     | 最慢  | 是  |  完整源代码  | 
+| inline-source-map      |   最慢     | 最慢  | 否  |  完整源代码  | 
+| hidden-source-map      |   最慢     | 最慢  | 是  |  完整源代码  | 
+| nosources-source-map       |   最慢     | 最慢  | 是  |  无源码内容，只有行列信息  |
 
+**Eval模式**
+eval其实指的是JavaScript中的一个函数，可以用来运行字符串中的JavaScript代码
 
-
+```js
+const code = 'console.log("foo~")'
+eval(code)//将code中的字符串作为js代码执行
+```
 
 
 
