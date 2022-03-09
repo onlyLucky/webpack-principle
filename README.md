@@ -928,6 +928,21 @@ eval(code)//将code中的字符串作为js代码执行
 
 ### 不同模式对比
 
+- inline-source-map
+
+更普通的source-map效果相同，只不过这种模式下的source-map不是以物理文件存在，而是以data urls 方式出现在代码中，我们之前遇到的eval-source-map也是这种inline的方式
+
+- hidden-source-map
+
+在这个模式下，我们在开发工具中看不到source map 的效果，但是也确实生成source map 文件，这就跟jquery一样，虽然生成了map文件，但是代码中没有引用对应的source map文件开发者依旧可以使用
+
+- nosource-source-map
+
+在这个模式下，我们看到错误出现的地方（包含行列位置），但是点进去却看不到源码，是为保护源码在生产环境不暴露
+
+
+### 总结
+
 
 
 
