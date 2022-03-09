@@ -1073,6 +1073,16 @@ module.hot.accept('./editor',()=>{
 ```
 图片模块热替换
 
+```js
+//./src/main.js
+import logo from './icon.png'
+// ...其他代码
+if(module.hot){//确保有HMR API 对象
+  module.hot.accept('./icon.png',()=>{
+  img.src = logo
+})
+}
+```
 
 
 
