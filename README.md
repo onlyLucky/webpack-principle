@@ -1098,7 +1098,7 @@ if(module.hot){//确保有HMR API 对象
 
 ### tree sharing
 
-翻译即“摇树”
+翻译即“摇树”，将没有用到的方法和变量，筛选掉
 
 [tree-shaking](tree-shaking)
 
@@ -1107,14 +1107,39 @@ if(module.hot){//确保有HMR API 对象
 ```shell
 $npx webpack --mode=none
 ```
+这里打包后的结果去搜索createElement的时候只会发现只有一个
+
+
+tree-shaking 并不是指webpack中的某一个配置选项，而是**一组功能搭配使用过后实现的效果**，这组功能在生产模式下都会自动启动，所以使用生产模式打包就有tree-shaking的效果
+
 
 不开启任何内置功能和插件
 ```shell
 $npx webpack --mode=none
 ```
+这里即使没有使用的函数也会进行打包
 
 
+```js
+module.exports = {
+  //.....
+  optimization: {
+    // 模块只导出被使用的成员，其他未使用的模块还会进行打包
+    usedExports: true,
+    // 压缩输出结果
+    minimize: true
+  }
+}
+```
+上面添加的配置为自动打开tree-shaking效果
 
+webpack的两个优化功能：
+- userExports - 打包结果中只导出外部成员
+- minimize - 压缩打包结果
+
+如果把我们的代码看做一棵大树，那就可以这样理解
+- userExports - 就是用来标记树上的枯树枝、枯树叶
+- minimize - 、负责把枯树枝、枯树叶摇下来
 
 
 
