@@ -1096,9 +1096,22 @@ if(module.hot){//确保有HMR API 对象
 
 ## webpack高级特性及应对项目优化需求
 
+### tree sharing
+
+翻译即“摇树”
+
+[tree-shaking](tree-shaking)
 
 
+尝试使用production模式运行打包
+```shell
+$npx webpack --mode=none
+```
 
+不开启任何内置功能和插件
+```shell
+$npx webpack --mode=none
+```
 
 
 
