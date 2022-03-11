@@ -1266,7 +1266,9 @@ var Heading = function Heading(level) {
 exports.Heading = Heading;
 ```
 
+### sideEffects
 
+>TIPS: 模块的副作用指的就是模块执行的时候除了导出成员，是否还做了其他事情
 
 
 
