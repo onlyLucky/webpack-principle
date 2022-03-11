@@ -1268,10 +1268,19 @@ exports.Heading = Heading;
 
 ### sideEffects
 
+查看全部代码：
+
+[sideEffects](sideEffects)
+
 >TIPS: 模块的副作用指的就是模块执行的时候除了导出成员，是否还做了其他事情
 
+我们这里只进行简单的打包，在webpack.config.js中只添加了`sideEffect: true`配置，打包过后，未使用的模块代码，未进行导出操作，这里只导出了被使用的`Button`模块
 
 
+下面我们在`package.json`文件中设置`sideEffect: false`
+
+- webpack.config.js 中的sideEffect 用来开启这功能
+- package.json中的sideEffect用来标识我们的代码没有副作用
 
 
 
