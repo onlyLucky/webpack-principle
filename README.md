@@ -1202,7 +1202,82 @@ document.body.appendChild(Button())
 
 要明确一点： tree-sharking实现的前提是es modules ，就是说：最终交给webpack打包的代码，必须是使用es modules的方式来组织模块化的
 
-> source -->
+> source --> babel-loader --> bundle
+
+
+下面是引入babel-loader处理的webpack配置文件
+```js
+module.exports = {
+  mode: 'none',
+  entry: './src/main.js', //注意这里的./不能省略
+  output: {
+    filename: 'bundle.js',
+    path: path.join(__dirname,'dist')
+  },
+  module:{
+    rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env']
+            ]
+          }
+        }
+      }
+    ]
+  },
+  optimization: {
+    // 模块只导出被使用的成员
+    usedExports: true
+  }
+}
+```
+在loader源码中(源码位于@babel/preset-env环境下的src/index.js)
+```js
+supportsStaticESM: true,
+supportsDynamicImport: true
+```
+这里标识当前环境支持es modules
+
+在使用`['@babel/preset-env',{modules: 'commonjs'}]`添加了commonjs后，之后打包的所有函数都会打包出去，相关比较可以亲自打包后进行对比
+
+下面是打包后的文件，对比都会进行打包
+```js
+ar Button = function Button() {
+  return document.createElement('button');
+  console.log('dead-code');
+};
+
+exports.Button = Button;
+
+var Link = function Link() {
+  return document.createElement('a');
+};
+
+exports.Link = Link;
+
+var Heading = function Heading(level) {
+  return document.createElement('h' + level);
+};
+
+exports.Heading = Heading;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 **相关参考**
 
