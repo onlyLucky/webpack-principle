@@ -1141,8 +1141,68 @@ webpack的两个优化功能：
 - userExports - 就是用来标记树上的枯树枝、枯树叶
 - minimize - 、负责把枯树枝、枯树叶摇下来
 
+### 合并模块
 
+```js
+module.exports = {
+  //.....
+  optimization: {
+    // 模块只导出被使用的成员，其他未使用的模块还会进行打包
+    usedExports: true,
+    //尽可能合并每一个模块到一个函数中
+    concatenateModules: true,
+    // 压缩输出结果
+    minimize: false
+  }
+}
+```
+下面是打包后的结果:
 
+```js
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+
+;// CONCATENATED MODULE: ./src/components.js
+/*
+ * @Author: pink
+ * @Date: 2022-03-10 22:25:58
+ * @LastEditors: pink
+ * @LastEditTime: 2022-03-10 23:17:43
+ * @Description: content
+ */
+//components.js
+const Button = () => {
+  return document.createElement('button')
+  console.log('dead-code')
+}
+
+const Link = () => {
+  return document.createElement('a')
+}
+
+const Heading = level => {
+  return document.createElement('h'+level)
+}
+;// CONCATENATED MODULE: ./src/main.js
+/*
+ * @Author: pink
+ * @Date: 2022-03-10 22:48:51
+ * @LastEditors: pink
+ * @LastEditTime: 2022-03-10 23:21:18
+ * @Description: content
+ */
+
+// main.js
+document.body.appendChild(Button())
+/******/ })()
+;
+```
+### babel-loader问题
+
+要明确一点： tree-sharking实现的前提是es modules ，就是说：最终交给webpack打包的代码，必须是使用es modules的方式来组织模块化的
+
+> source -->
 
 **相关参考**
 
