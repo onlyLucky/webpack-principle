@@ -1283,8 +1283,29 @@ exports.Heading = Heading;
 - package.json中的sideEffect用来标识我们的代码没有副作用
 
 
+sideEffects 特性，通过给 package.json 加入 sideEffects声明该 包/模块 是否包含 sideEffects(副作用=> js中引用不透明的代码，比如objectzhongdegetter和setter操作，webpack打包时会进行保留)，从而可以为 tree-shaking 提供更大的优化空间
 
+想使用 sideEffects，你的 webpack 的版本号要大于等于 4。那具体应该怎么用呢，如果你在写一个第三方的 npm 模块，sideEffects 支持下面两种写法：
 
+```js
+// package.json
+{
+    "sideEffects": false
+}
+// antd package.json
+{
+  "sideEffects": [
+    "dist/*",
+    "es/**/style/*",
+    "lib/**/style/*"
+  ]
+}
+```
+
+webpack中的两个高级特性
+
+- tree-sharking
+- sideEffects 
 
 
 
