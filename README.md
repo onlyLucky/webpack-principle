@@ -1361,7 +1361,20 @@ code splitting 更常见的实现方式还是结合ES Modules 的动态导入特
 [dynamic-import](dynamic-import)
 
 
+**魔法注释**
 
+```js
+// 魔法注释
+import(/* webpackChunkName: 'components' */'./posts/posts').then(({ default: posts }) => {
+  mainElement.appendChild(posts())
+})
+```
+这个注释有一个特定的格式 `webpackChunkName: '<chunk-name>'`
+
+
+> --END--
+>
+> 从事开发工作就是，**不断“制造”问题，不断解决问题**
 
 
 
