@@ -1,0 +1,33 @@
+<!--
+ * @Author: pink
+ * @Date: 2022-03-13 13:09:31
+ * @LastEditors: pink
+ * @LastEditTime: 2022-03-13 13:44:37
+ * @Description: index
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <h1 class="brand"><%= htmlWebpackPlugin.options.title %></h1>
+      <nav class="nav">
+        <ul>
+          <li><a href="#posts">Posts</a></li>
+          <li><a href="#album">Album</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main"></main>
+    <footer class="footer">
+      <p>&copy; <%= htmlWebpackPlugin.options.year %> <%= htmlWebpackPlugin.options.title %>. All Rights Reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
