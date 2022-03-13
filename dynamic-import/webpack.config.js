@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-03-13 13:10:05
  * @LastEditors: pink
- * @LastEditTime: 2022-03-13 13:53:01
+ * @LastEditTime: 2022-03-13 14:06:23
  * @Description: webpack.config
  */
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -13,7 +13,7 @@ module.exports = {
     main: './src/index.js'
   },
   output: {
-    filename: '[name].bundle.js',//name 为入口文件
+    filename: '[name].js',//name 为入口文件
   },
   module: {
     rules:[
@@ -34,19 +34,13 @@ module.exports = {
       }
     ]
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all'//自动提取所有公共模块到单独的bundle
-    }
-  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Dynamic Import',
       year: new Date().getFullYear(),
-      template: './index.html',
+      template: './src/index.html',
       filename: 'index.html',
-      chunks: ['index'] //指定使用index.bundle.js
     })
   ]
 }
