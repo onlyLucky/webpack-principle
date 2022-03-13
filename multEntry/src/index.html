@@ -2,6 +2,32 @@
  * @Author: pink
  * @Date: 2022-03-12 23:51:46
  * @LastEditors: pink
- * @LastEditTime: 2022-03-12 23:51:46
+ * @LastEditTime: 2022-03-13 12:18:11
  * @Description: index
 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home - <%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <h1 class="brand"><%= htmlWebpackPlugin.options.title %></h1>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="album.html">Album</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main"></main>
+    <footer class="footer">
+      <p>&copy; 2020 <%= htmlWebpackPlugin.options.title %>. All Rights Reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
