@@ -1,0 +1,10 @@
+// escaping 转义
+
+// 两个都为同样的情况
+// @min768: ~"(min-width: 768px)";
+@min768: (min-width: 768px);
+.element{
+  @media @min768{
+    font-size: 1.2rem;
+  }
+}
