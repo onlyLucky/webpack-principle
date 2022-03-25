@@ -9,3 +9,40 @@
     width: 300px;
   }
 }
+
+// 结合伪类使用
+.clearfix{
+  display: block;
+  zoom: 1;
+  &:after{
+    content: '';
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+// @规则嵌套和冒泡
+
+.component{
+  width: 300px;
+  @media (min-width: 768px) {
+    width: 600px;
+    @media (min-resolution: 192dpi){
+      background-color: pink;
+    }
+  }
+  @media(min-width: 1280px){
+    width: 800px;
+  }
+}
+
+/* 
+@media (min-width: 768px) and (min-resolution: 192dpi) {
+  .component {
+    background-image: url(/img/retina2x.png);
+  }
+}
+*/
