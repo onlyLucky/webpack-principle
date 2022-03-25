@@ -38,7 +38,7 @@ console.log(`Powered by %cwebpack-principle%c\nGitHub: https://github.com/onlyLu
 
 
 `%c`实则就是相对位置从开始的`%c`到下一个位置的`%c`的文字填充样式
-
+1
 
 后面为大家准备了个练手案例，快来试试吧
 
