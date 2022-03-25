@@ -1,0 +1,10 @@
+// function 函数
+
+@base: #f04615;
+@width: 0.5;
+
+.classFun {
+  width: percentage(@width); // returns `50%`
+  color: saturate(@base, 5%);
+  background-color: spin(lighten(@base, 25%), 8);
+}
