@@ -1,1 +1,20 @@
 // 混合 mixins
+
+.bordered{
+  border-top: 1px dotted black;
+  border-bottom: 2px solid black;
+}
+
+#menu{
+  a{
+    color: #111;
+    .bordered();
+  }
+}
+
+.post {
+  a{
+    color: red;
+    .bordered();
+  }
+}

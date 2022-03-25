@@ -2,7 +2,7 @@
  * @Author: pink
  * @Date: 2022-03-25 21:51:03
  * @LastEditors: pink
- * @LastEditTime: 2022-03-25 22:07:27
+ * @LastEditTime: 2022-03-25 22:16:09
  * @Description: index
 -->
 <!DOCTYPE html>
@@ -14,10 +14,14 @@
   <title>base</title>
   <link rel="stylesheet/less" type="text/css" href="./style/variables.less" />
   <link rel="stylesheet/less" type="text/css" href="./style/mixins.less" />
+  <link rel="stylesheet/less" type="text/css" href="./style/nesting.less"/>
   <script src="../libs/less.js" type="text/javascript"></script>
 </head>
 <body>
-  <div id="header"></div>
+  <div id="header">
+    <div class="navigation"></div>
+    <div class="logo"></div>
+  </div>
   <div id="menu">
     <a href=""></a>
   </div>
