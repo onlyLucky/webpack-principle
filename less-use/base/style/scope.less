@@ -1,0 +1,17 @@
+// scope 作用域
+@var: red;
+#page{
+  @var: white;
+  #header{
+    color: @var;// white
+  }
+}
+
+@var: red;
+
+#page {
+  #header {
+    color: @var; // white
+  }
+  @var: white;
+}
