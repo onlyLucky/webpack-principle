@@ -1,1 +1,25 @@
 // operations 运算
+
+// 所有操作数被转换成相同的单位
+@conversion-1: 5cm + 10mm; // 结果是 6cm
+@conversion-2: 2 - 3cm - 5mm; // 结果是 -1.5cm
+
+// conversion is impossible
+@incompatible-units: 2 + 5px - 3cm; // 结果是 4px
+
+// example with variables
+@base: 5%;
+@filler: @base * 2; // 结果是 10%
+@other: @base + @filler; // 结果是 15%
+
+
+// 乘法和除法不作单位转换
+@base: 2cm * 3mm; // 结果是 6cm
+
+@color: #224488 / 2; //结果是 #112244
+@colors: #112244 + #111; // 结果是 #223355
+
+// calc() 并不对数学表达式进行计算
+
+@var: 50vh/2;
+@width: calc(50% + (@var - 20px));  // 结果是 calc(50% + (25vh - 20px))
