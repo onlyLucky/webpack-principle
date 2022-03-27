@@ -1,1 +1,37 @@
 // less 列表函数
+
+@list: "banana", "tomato", "potato", "peach";
+@n: length(@list);//4
+
+// extract 返回指定位置的值
+@list: apple, pear, coconut, orange;
+@value: extract(@list,3);
+
+// range 
+@value: range(4);//1 2 3 4
+@value: range(10px,30px,10);//10px 20px 30px
+
+// each
+@selector: blue,green,red;
+each(@selector,{
+  .sel-@{value}{
+    color: @value;
+  }
+})
+
+@set: {
+  one: blue;
+  two: green;
+  three: red;
+}
+.set {
+  each(@set, {
+    @{key}-@{index}: @value;
+  });
+}
+
+each(range(4), {
+  .col-@{value} {
+    height: (@value * 50px);
+  }
+});

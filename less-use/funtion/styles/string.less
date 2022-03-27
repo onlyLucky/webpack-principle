@@ -6,7 +6,7 @@
 
 //e 
 @mscode: "ms:alwaysHasItsOwnSyntax.For.Stuff()";
-filter: e(@mscode);//ms:alwaysHasItsOwnSyntax.For.Stuff()
+@filter: e(@mscode);//ms:alwaysHasItsOwnSyntax.For.Stuff()
 
 // % format 占位符
 @format-a-d: %("repetitions: %a file: %d", 1 + 2, "directory/file.less");//"repetitions: 3 file: "directory/file.less""
@@ -17,7 +17,7 @@ filter: e(@mscode);//ms:alwaysHasItsOwnSyntax.For.Stuff()
 
 // replace
 
-replace("Hello, Mars?", "Mars\?", "Earth!");
-replace("One + one = 4", "one", "2", "gi");
-replace('This is a string.', "(string)\.$", "new $1.");
-replace(~"bar-1", '1', '2');
+@var: replace("Hello, Mars?", "Mars\?", "Earth!");
+@var: replace("One + one = 4", "one", "2", "gi");
+@var: replace('This is a string.', "(string)\.$", "new $1.");
+@var: replace(~"bar-1", '1', '2');
