@@ -1,0 +1,41 @@
+// 类型检测函数
+
+// isnumber
+@keyword: pink;
+@var:isnumber(#ff0);     // false
+@var:isnumber(blue);     // false
+@var:isnumber("string"); // false
+@var:isnumber(1234);     // true
+@var:isnumber(56px);     // true
+@var:isnumber(7.8%);     // true
+@var:isnumber(@keyword);  // false
+@var:isnumber(url(../index.html)); // false
+
+// isstring
+@var:isstring("string"); // true
+
+// iscolor
+@var:iscolor(#ff0);     // true
+
+@var:iskeyword(keyword);  // true
+
+@var: isurl(url(../index.html)); // true
+
+@var: ispixel(56px);
+
+@var: isem(7.8em);    // true
+
+@var: ispercentage(7.8%);     // true
+
+// isunit 是否为相同的单位
+@var: isunit(7.8%, '%'); // true
+
+@rules: {
+  color: red;
+}
+// isruleset
+@var: isruleset(@rules);   // true
+
+
+
+
