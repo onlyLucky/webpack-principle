@@ -1,0 +1,23 @@
+//  字符串
+
+
+// escape 转义
+@var: escape('a=1');  //a%3D1
+
+//e 
+@mscode: "ms:alwaysHasItsOwnSyntax.For.Stuff()";
+filter: e(@mscode);//ms:alwaysHasItsOwnSyntax.For.Stuff()
+
+// % format 占位符
+@format-a-d: %("repetitions: %a file: %d", 1 + 2, "directory/file.less");//"repetitions: 3 file: "directory/file.less""
+@format-a-d-upper: %('repetitions: %A file: %D', 1 + 2, "directory/file.less");//"repetitions: 3 file: %22directory%2Ffile.less%22"
+@format-s: %("repetitions: %s file: %s", 1 + 2, "directory/file.less");//"repetitions: 3 file: directory/file.less"
+@format-s-upper: %('repetitions: %S file: %S', 1 + 2, "directory/file.less");//repetitions: 3 file: directory%2Ffile.less
+
+
+// replace
+
+replace("Hello, Mars?", "Mars\?", "Earth!");
+replace("One + one = 4", "one", "2", "gi");
+replace('This is a string.', "(string)\.$", "new $1.");
+replace(~"bar-1", '1', '2');
