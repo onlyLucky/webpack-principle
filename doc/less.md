@@ -20,6 +20,18 @@
 ## 目录
 
 1. [基本使用](#基本使用)
+2. [less内置函数](#less内置函数)
+3. [进阶使用](#进阶使用)
+
+
+> 基础目标：
+>
+>1. 基础语法使用
+>2. 日常生产中减少重复代码，灵活使用
+>3. 提取公共样式代码库
+>4. 适应eslint代码格式
+
+## 基本使用
 
 详细代码参考： [base](../less-use/base/)
 
@@ -34,20 +46,6 @@
 - [作用域（Scope）](../less-use/base/style/scope.less)
 - [注释（Comments）](../less-use/base/style/comments.less)
 - [导入（Importing）](../less-use/base/style/importing.less)
-
-2. [less内置函数](#less内置函数)
-3. [进阶使用](#进阶使用)
-
-
-> 基础目标：
->
->1. 基础语法使用
->2. 日常生产中减少重复代码，灵活使用
->3. 提取公共样式代码库
->4. 适应eslint代码格式
-
-## 基本使用
-
 
 ## less内置函数
 
