@@ -4,3 +4,18 @@
   margin: if((2>1),0,3px);
   color: if((iscolor(@some)),@some,black);
 }
+
+// 另外一种使用方法 no and or => ! & |
+
+@var1: if(no(true), foo,bar);
+@var2: if((true) and (2>1), foo , bar);
+@var3: if((false) or (isstring("bar!")), fro, bar);
+
+// boolean
+@bg: black;
+@bg-light: boolean(luma(@bg)>50%);
+
+.boolean{
+  background-color: @bg;
+  color: if(@bg-light,black,white);
+}

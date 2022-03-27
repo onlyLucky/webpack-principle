@@ -33,6 +33,8 @@
 
 ## 基本使用
 
+Less 仅对 CSS 语言增加了少许方便的扩展
+
 详细代码参考： [base](../less-use/base/)
 
 - [变量（Variables）](../less-use/base/style/variables.less)
