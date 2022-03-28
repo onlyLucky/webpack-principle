@@ -1,0 +1,33 @@
+// misc function其他类型的函数
+
+@value: color("#aaa");//#aaa
+
+// @image: image-size("file.png");//10px 10px
+
+// @image-width: image-width("file.png");//10px
+
+// 同理 image-width，也有image-height
+
+// 单位转换
+@unit: convert(9s, "ms");//9000ms
+
+// @url: data-uri('../data/image.jpg');//url('data:image/jpeg;base64,bm90IGFjdHVhbGx5IGEganBlZyBmaWxlCg==');
+// 将图片转换为base64格式
+
+// default()
+
+//unit
+// unit(5, px) => 5px
+// unit(5em) =>5
+
+
+// get-unit
+
+// get-unit(5px)  => px
+// get-unit(5) => nothing
+
+.svg{
+  @list: red, green 30%, blue;
+  background-image: svg-gradient(to right, @list);
+}
+// background-image: svg-gradient(to right, red, green 30%, blue);
