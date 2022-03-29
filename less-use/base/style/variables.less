@@ -8,3 +8,19 @@
   height: @height;
   background-color: pink;
 }
+
+// power
+@my-selector: banner;
+.@{my-selector}{
+  font-weight: bold;
+  line-height: 40px;
+  margin: 0 auto;
+}
+
+// url
+@images: "../img";
+
+.image{
+  color: #444;
+  background: url("@{images}/dog.png");
+}
