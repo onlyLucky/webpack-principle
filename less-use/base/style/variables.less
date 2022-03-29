@@ -24,3 +24,53 @@
   color: #444;
   background: url("@{images}/dog.png");
 }
+
+// @themes: "../../src/themes";
+
+// Usage
+// @import "@{themes}/tidal-wave.less";
+
+// 属性变量
+
+@property: color;
+.widget{
+  @{property}: #0ee;
+  background-@{property}: #999;
+}
+
+// 变量的变量
+@primary: green;
+@secondary: blue;
+
+.section{
+  @color: primary;
+  .element{
+    color: @@color;
+  }
+}
+
+.widgets {
+  color: #efefef;
+  background-color: $color;
+}
+
+.block {
+  color: red; 
+  .inner {
+    background-color: $color; 
+  }
+  color: blue;  
+} 
+// 最后color会被重写所以为blue
+
+
+/* @base-color: green;
+@dark-color: darken(@base-color, 10%);
+
+// use of library
+@import "library.less";
+@base-color: red; */
+
+// 这里加载的是red dark-color
+
+
