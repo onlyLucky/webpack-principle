@@ -51,6 +51,17 @@ Less 仅对 CSS 语言增加了少许方便的扩展
 
 ## less内置函数
 
+less 基本的内置操作函数的使用
+
+- [逻辑判断（Logical Functions）](../less-use/function/style/logical.less)
+- [字符串操作（String Functions）](../less-use/function/style/string.less)
+- [列表数组（List Functions）](../less-use/function/style/list.less)
+- [数学操作（Math Functions）](../less-use/function/style/math.less)
+- [类型判断（Type Functions）](../less-use/function/style/type.less)
+- [其他函数（Misc Functions）](../less-use/function/style/misc.less)
+- [颜色定义（Color Definition）](../less-use/function/style/color-definition.less)
+- [颜色通道（Color Channel ）](../less-use/function/style/color-channel.less)
+- [颜色操作（Color Operation ）](../less-use/function/style/color-operation.less)
 
 
 ## 进阶使用
