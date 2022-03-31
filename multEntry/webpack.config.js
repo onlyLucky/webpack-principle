@@ -1,8 +1,8 @@
 /*
  * @Author: pink
  * @Date: 2022-03-12 23:52:23
- * @LastEditors: pink
- * @LastEditTime: 2022-03-13 12:53:24
+ * @LastEditors: fg
+ * @LastEditTime: 2022-03-31 09:37:03
  * @Description: webpack.config
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -13,21 +13,20 @@ module.exports = {
     album: './src/album.js'
   },
   output: {
-    filename: '[name].bundle.js',//name 为入口文件
+    filename: '[name].bundle.js' // name 为入口文件
   },
   module: {
-    rules:[
+    rules: [
       {
-        test: /\.css$/,//根据打包过程中所遇到的文件路径匹配是否使用该loader
-        use: ['style-loader','css-loader'],//指具体的loader
+        test: /\.css$/, // 根据打包过程中所遇到的文件路径匹配是否使用该loader
+        use: ['style-loader', 'css-loader'] // 指具体的loader
       },
       {
         test: /\.js$/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              ['@babel/preset-env']
+            presets: [['@babel/preset-env']
             ]
           }
         }
@@ -36,7 +35,7 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'//自动提取所有公共模块到单独的bundle
+      chunks: 'all'// 自动提取所有公共模块到单独的bundle
     }
   },
   plugins: [
@@ -45,14 +44,14 @@ module.exports = {
       year: new Date().getFullYear(),
       template: './src/index.html',
       filename: 'index.html',
-      chunks: ['index'] //指定使用index.bundle.js
+      chunks: ['index'] // 指定使用index.bundle.js
     }),
     new HtmlWebpackPlugin({
       title: 'Multi Entry',
       year: new Date().getFullYear(),
       template: './src/album.html',
       filename: 'album.html',
-      chunks: ['album'] //指定使用album.bundle.js
+      chunks: ['album'] // 指定使用album.bundle.js
     })
   ]
 }

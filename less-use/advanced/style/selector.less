@@ -1,0 +1,38 @@
+.header {
+  .menu {
+    border-radius: 5px;
+    .no-border & {
+      //& .header>.menu
+      background-image: url("images/button-background.png");
+    }
+  }
+}
+
+p,
+a,
+ul,
+li {
+  border-top: 2px dotted #366;
+  & + & {
+    border-top: 0;
+  }
+}
+
+/* p + p,
+p + a,
+p + ul,
+p + li,
+a + p,
+a + a,
+a + ul,
+a + li,
+ul + p,
+ul + a,
+ul + ul,
+ul + li,
+li + p,
+li + a,
+li + ul,
+li + li {
+  border-top: 0;
+} */
