@@ -1,0 +1,18 @@
+{
+  "name": "webpack-principle",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">\r   <h1>webpack-principle</h1>\r   <p>对webpack打包工具的个人理解,原理的部分实践</p>\r   <a href=\"https://github.com/onlyLucky/webpack-principle\">\r     <img src=\"https://s4.ax1x.com/2022/02/28/bu6BJx.png\" alt=\"node\">\r   </a>\r   <a href=\"https://github.com/onlyLucky/webpack-principle\">\r     <img src=\"https://s4.ax1x.com/2022/02/28/bu6yQO.png\" alt=\"npm\">\r   </a>\r   <a href=\"https://github.com/onlyLucky/webpack-principle\">\r     <img src=\"https://s4.ax1x.com/2022/02/28/bu6sSK.png\" alt=\"build\">\r   </a>\r   <a href=\"https://github.com/onlyLucky/webpack-principle\">\r     <img src=\"https://s4.ax1x.com/2022/02/28/bu6DW6.png\" alt=\"license\">\r   </a>\r </div>",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "standard": "^16.0.4"
+  }
+}
