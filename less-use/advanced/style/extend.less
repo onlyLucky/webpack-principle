@@ -1,0 +1,57 @@
+nav ul {
+  &:extend(.inline);
+  background-color: blue;
+}
+.inline {
+  color: red;
+}
+
+// 附加到选择器的 Extend 看起来像一个带有选择器作为参数的普通伪类。一个选择器可以包含多个扩展子句，但是所有扩展都必须位于选择器的末尾
+.big-version,
+.big-bag:extend(.bag),
+.big-bucket:extend(.bucket) {
+  // body
+  color: pink;
+}
+.bucket {
+  background-color: lightblue;
+  tr {
+    // nested ruleset with target selector
+    color: blue;
+  }
+}
+.bag {
+  font-size: 12px;
+}
+.some-class:extend(.bucket tr) {
+  width: 20px;
+  height: 20px;
+  background-color: pink;
+}
+.a.class-one,
+.class-one.a,
+.class-one > .a {
+  color: blue;
+}
+.test:extend(.class-one) {
+  background-color: pink;
+}
+// 星号匹配的是和class类一并的类或id标签,但是extend继承样式是不可能成功，还有过个尾类
+*.class-one {
+  color: blue;
+}
+.noStar:extend(.class-one) {
+  background-color: pink;
+}
+
+link:hover:visited {
+  color: blue;
+}
+// extend 不会生效
+.selector:extend(link:visited:hover) {
+}
+:nth-child(1n + 3) {
+  color: blue;
+}
+.child:extend(:nth-child(n + 3)) {
+}
