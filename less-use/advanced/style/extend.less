@@ -55,3 +55,22 @@ link:hover:visited {
 }
 .child:extend(:nth-child(n + 3)) {
 }
+
+
+.a.b.test,
+.test.c {
+  color: orange;
+}
+.test {
+  &:hover {
+    color: green;
+  }
+}
+
+.replacement:extend(.test all) {}
+
+.bucket {
+  color: blue;
+}
+@{variable}:extend(.bucket) {}
+@variable: .selector;
