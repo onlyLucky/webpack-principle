@@ -1,0 +1,157 @@
+/*
+ * @Author: fg
+ * @Date: 2022-04-02 09:51:37
+ * @LastEditors: fg
+ * @LastEditTime: 2022-04-02 11:44:53
+ * @Description: 混合现有的样式
+ */
+
+.a,
+#b {
+  font-size: 12px;
+}
+.mixin-class {
+  .a();
+}
+.mixin-id {
+  #b();
+}
+
+.my-mixin {
+  color: black;
+}
+.my-other-mixin() {
+  background: white;
+}
+.m-class {
+  .my-mixin();
+  .my-other-mixin();
+}
+
+.my-hover-mixin() {
+  width: 200px;
+  height: 200px;
+  border-radius: 50px;
+  background-color: pink;
+  &:hover {
+    border: 1px solid red;
+  }
+}
+.m-button {
+  .my-hover-mixin();
+}
+
+#my-library {
+  .my-mixin() {
+    color: black;
+  }
+}
+
+.class-one {
+  #my-library.my-mixin();
+}
+
+.foo (@bg: #f5f5f5, @color: #900) {
+  background: @bg;
+  color: @color;
+}
+
+.unimportant {
+  .foo();
+}
+.important {
+  .foo() !important;
+}
+
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+#header {
+  .border-radius();
+}
+// 多个参数使用的时候需要按照顺序添加，参数可以设置默认值
+.average(@x, @y) {
+  @result: ((@x + @y) / 2);
+  value: 8%;
+  next: true;
+}
+
+.value {
+  // call a mixin and look up its "@result" value
+  padding: .average(16px, 50px) [ @result];
+  font-size: .average(16px, 50px) [];
+}
+// 如果不传值的话，就会
+
+#library() {
+  .mixin() {
+    prop: 12px;
+  }
+}
+
+.box {
+  font-size: #library.mixin[prop];
+}
+
+.mixin() {
+  @width: 100%;
+  @height: 200px;
+}
+
+.caller {
+  .mixin();
+  width: @width;
+  height: @height;
+}
+
+.loop(@counter) when (@counter > 0) {
+  .loop((@counter - 1)); // next iteration
+  width: (10px * @counter); // code for each iteration
+}
+
+.loop {
+  .loop(5);
+}
+
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .column-@{i} {
+    width: (@i * 100% / @n);
+  }
+  .generate-columns(@n, (@i + 1));
+}
+
+.generate-columns(4);
+
+.mixin(@a) when (lightness(@a) >= 50%) {
+  background-color: black;
+}
+.mixin(@a) when (lightness(@a) < 50%) {
+  background-color: white;
+}
+.mixin(@a) {
+  color: @a;
+}
+.ddd {
+  .mixin(#ddd);
+}
+.m555 {
+  .mixin(#555);
+}
+
+#theme.dark.navbar {
+  .colors(light) {
+    primary: purple;
+  }
+  .colors(dark) {
+    primary: black;
+    secondary: grey;
+  }
+}
+.navbar {
+  @colors: #theme.dark.navbar.colors(dark);
+  background: @colors[primary];
+  border: 1px solid @colors[secondary];
+}
