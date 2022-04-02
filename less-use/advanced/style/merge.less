@@ -1,0 +1,17 @@
+/*
+ * @Author: fg
+ * @Date: 2022-04-02 09:34:14
+ * @LastEditors: fg
+ * @LastEditTime: 2022-04-02 09:48:45
+ * @Description: less合并
+ */
+.mixin(){
+  box-shadow+: inset 0 0 10px #555;
+  transform+_: scale(2);
+}
+.myclass{
+  .mixin();
+  box-shadow+: 0 0 20px black;
+  transform+_: rotate(15deg);
+}
+
