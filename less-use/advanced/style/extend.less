@@ -74,3 +74,14 @@ link:hover:visited {
 }
 @{variable}:extend(.bucket) {}
 @variable: .selector;
+
+.my-inline-block {
+  display: inline-block;
+  font-size: 0;
+}
+.thing1 {
+  &:extend(.my-inline-block);
+}
+.thing2 {
+  &:extend(.my-inline-block);
+}
