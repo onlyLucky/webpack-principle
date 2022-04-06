@@ -15,21 +15,18 @@
   </a>
 </div>
 
-
-
 ## 目录
 
 1. [基本使用](#基本使用)
-2. [less内置函数](#less内置函数)
+2. [less 内置函数](#less内置函数)
 3. [进阶使用](#进阶使用)
-
 
 > 基础目标：
 >
->1. 基础语法使用
->2. 日常生产中减少重复代码，灵活使用
->3. 提取公共样式代码库
->4. 适应eslint代码格式
+> 1.  基础语法使用
+> 2.  日常生产中减少重复代码，灵活使用
+> 3.  提取公共样式代码库
+> 4.  适应 eslint 代码格式
 
 ## 基本使用
 
@@ -49,7 +46,7 @@ Less 仅对 CSS 语言增加了少许方便的扩展
 - [注释（Comments）](../less-use/base/style/comments.less)
 - [导入（Importing）](../less-use/base/style/importing.less)
 
-## less内置函数
+## less 内置函数
 
 less 基本的内置操作函数的使用
 
@@ -63,5 +60,22 @@ less 基本的内置操作函数的使用
 - [颜色通道（Color Channel ）](../less-use/function/style/color-channel.less)
 - [颜色操作（Color Operation ）](../less-use/function/style/color-operation.less)
 
-
 ## 进阶使用
+
+- Import
+
+  导入样式可以使用 不带 less 后缀
+
+  **Options**
+
+  `@import (keyword) "filename";`
+
+  下面是使用一些参数进行操作
+
+  - reference: 使用 less 文件但不导出
+  - inline: 在输出中包含源文件，但不进行编译
+  - less: 不管文件扩展名是什么，都要将文件视为 Less 文件
+  - css: 不管文件扩展名是什么，都要将文件视为 css 文件
+  - once: 只引入一次（默认）
+  - multiple: 多次引入文件
+  - optional: 找不到文件会进行继续编译
