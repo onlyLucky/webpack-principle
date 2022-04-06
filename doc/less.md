@@ -79,3 +79,65 @@ less 基本的内置操作函数的使用
   - once: 只引入一次（默认）
   - multiple: 多次引入文件
   - optional: 找不到文件会进行继续编译
+
+- Plugin
+
+  引入 javascript 插件用来扩展 less 的属性和特性
+
+  使用`@plugin`类似于在 less 文件中使用`@import`
+
+  **my-plugin.js**
+
+  ```js
+  registerPlugin({
+    install: function (less, pluginManager, functions) {
+      functions.add("pi", function () {
+        return Math.PI;
+      });
+    },
+  });
+  ```
+
+  可以使用以上的方式引入，在 less 中使用 pi()去调用，也可以使用以下方式编写 plugin
+
+  ```js
+  module.exports = {
+    install: function (less, pluginManager, functions) {
+      functions.add("pi", function () {
+        return Math.PI;
+      });
+    },
+  };
+  ```
+
+  内部可以注册多个插件函数，我们可以在 less 函数中引入多个 plugin，每个 plugin 在不同的函数中，有不同的作用域，引入之后作用域也会有所不一样
+
+  - 如果你不想返回一个输出的话只是用来处理逻辑，只需要你`return false`
+
+  - less plugin 除了 install 还有其他操作项
+
+    ```js
+    {
+      /* 插件文件被调用之后会被立即执行  初次引入，只加载一次 */
+      install: function(less, pluginManager, functions) { },
+      /* 为@plugin的每一个实例调用 */
+      use: function(context) { },
+      /* 为@plugin的每一个实例调用,当规则被计算求值得时候，会进行这个计算求值得生命周期*/
+      eval: function(context) { },
+
+      /* Passes an arbitrary string to your plugin
+      * e.g. @plugin (args) "file";
+      * This string is not parsed for you,
+      * so it can contain (almost) anything */
+      setOptions: function(argumentString) { },
+
+      /* Set a minimum Less compatibility string
+      * You can also use an array, as in [3, 0] */
+      minVersion: ['3.0'],
+
+      /* Used for lessc only, to explain
+      * options in a Terminal */
+      printUsage: function() { },
+
+    }
+    ```

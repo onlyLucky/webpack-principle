@@ -1,0 +1,23 @@
+/*
+ * @Author: fg
+ * @Date: 2022-04-06 10:46:07
+ * @LastEditors: fg
+ * @LastEditTime: 2022-04-06 12:50:40
+ * @Description: 引入javascript插件用来扩展less的属性和特性
+ */
+
+@plugin "plugins/my-plugin";
+
+.show-me-pi {
+  color: pi();
+  background-color: bg();
+}
+
+.el-1 {
+  @plugin "plugins/my-plugin";
+  background: foo();
+}
+.el-2 {
+  @plugin "plugins/plugin1";
+  background: foo();
+}
