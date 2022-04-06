@@ -1,0 +1,45 @@
+/*
+ * @Author: fg
+ * @Date: 2022-04-06 09:37:31
+ * @LastEditors: fg
+ * @LastEditTime: 2022-04-06 10:21:53
+ * @Description: 为变量分配规则
+ */
+@detached-rule-sets: {
+  background-color: pink;
+};
+.top-rule {
+  @detached-rule-sets();
+}
+
+@detached-rule-set: {
+  .mixin() {
+    color: blue;
+  }
+};
+
+.caller {
+  @detached-rule-set();
+  .mixin();
+}
+
+@config: {
+  option1: true;
+  option2: false;
+};
+.mixins() when (@config[option1] = true) {
+  background-color: pink;
+}
+.box-rules {
+  .mixins();
+}
+
+@configs: {
+  @colors: {
+    primary: blue;
+  };
+};
+
+#boxing.box-sets {
+  color: @configs[ @colors][primary];
+}
