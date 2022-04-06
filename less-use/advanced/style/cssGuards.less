@@ -1,0 +1,32 @@
+/*
+ * @Author: fg
+ * @Date: 2022-04-06 09:21:59
+ * @LastEditors: fg
+ * @LastEditTime: 2022-04-06 09:33:49
+ * @Description: 判断选择
+ */
+@my-option: true;
+.my-optional-style {
+  background-color: pink;
+  .my-optional-style();
+}
+
+.my-optional-style() when (@my-option = true) {
+  color: black;
+  button {
+    color: white;
+  }
+}
+
+@dr: if(@my-option = true, {
+  button {
+    color: white;
+  }
+  a {
+    color: blue;
+  }
+});
+
+.dr{
+  @dr();
+}
