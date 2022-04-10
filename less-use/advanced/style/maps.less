@@ -1,0 +1,64 @@
+/*
+ * @Author: fg
+ * @Date: 2022-04-10 12:35:44
+ * @LastEditors: fg
+ * @LastEditTime: 2022-04-10 16:31:11
+ * @Description: Map
+ */
+
+ @sizes: {
+   mobile: 320px;
+   tablet: 768px;
+   desktop: 1024px;
+ }
+
+ .navbar {
+   display: block;
+   @media (min-width: @sizes[tablet]) {
+     display: inline-block;
+   } 
+ }
+
+ 
+//  变量修改
+
+#library(){
+  .colors(){
+    primary: green;
+    secondary: blue;
+  }
+}
+
+#library(){
+  .colors(){
+    primary: grey;
+  }
+}
+
+.buttonLib {
+  color: #library.colors[primary];
+  border-color: #library.colors[secondary];
+}
+
+@config: {
+  @options: {
+    library-on: true;
+  }
+}
+
+
+.button-color {
+  @colors: #library.colors();
+  color: @colors[primary];
+  border-color: @colors[secondary];
+  & when (@config[@options][library-on] = true) {
+    .produce-rule-set {
+      props: val;
+    }
+  }
+}
+
+
+
+
+
